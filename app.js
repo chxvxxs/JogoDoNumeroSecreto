@@ -17,6 +17,7 @@ function verificarChute(){
         let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
         let msgTentativas = `Você acertou o número secreto com ${tentativas} ${palavraTentativa}`;
         exibirTextoNaTela('p', msgTentativas);
+        document.getElementById('reiniciar').removeAttribute('disabled');
     }else{
         if(chute > numeroSecreto){
             exibirTextoNaTela('p', 'O número secreto é menor');
@@ -36,4 +37,13 @@ function gerarNumeroAleatorio(){
 function limparCampo(){
     chute = document.querySelector('input');
     chute.value = '';
+}
+
+function reiniciarJogo() {
+    numeroSecreto = gerarNumeroAleatorio();
+    limparCampo();
+    tentativas = 1;
+    exibirTextoNaTela('h1', 'Jogo do número secreto');
+    exibirTextoNaTela('p', 'Escolha um número entre 1 e 10!');
+    document.getElementById('reiniciar').setAttribute('disabled', true);
 }
